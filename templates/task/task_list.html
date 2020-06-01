@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}
+    
+{% endblock title %}
+
+
+
+{% block content %}
+
+       <h1 class="mx-4">All To-Do</h1>
+       <div class="row mx-2">
+            <div class="col-8">
+                <div class="text-right my-2">
+                   <a href="{% url 'task-add' %}">Create To-DO</a>
+                </div>
+            {% if object_list %}
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr class="text-center">
+                            <th>Title</th>
+                            <th>Deadline</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for object in object_list  %}
+                        <tr class="text-center">
+                            <td><a href="{% url 'task-detail' object.id %}">{{object.title}}</a></td>
+                            <td>{{ object.deadline }}</td>
+                            <td>{{ object.get_status_display }}</td>
+                        </tr>
+                    {% endfor %}
+                        
+                    </tbody>
+                </table>
+            {% endif %}
+                
+            </div>
+        </div>
+        
+{% endblock content %}

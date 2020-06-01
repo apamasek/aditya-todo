@@ -14,8 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
+from todoapp.views import HomeView, SignUpView, TaskAllView, DashboardView, TaskDetailView, TaskAddView
 
 urlpatterns = [
+    path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
+    path('signup/', SignUpView.as_view(), name='signup'),
+    path('', HomeView.as_view(), name='home'),
+    path('dashboard/', DashboardView.as_view(), name='dashboard'),
+    path('tasks/<int:pk>', TaskDetailView.as_view(), name='task-detail'),
+    path('tasks/', TaskAllView.as_view(), name='task-list'),
+    path('task/add/', TaskAddView.as_view(), name='task-add'),
+
 ]

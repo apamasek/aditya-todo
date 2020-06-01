@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div>
+        <div class="col mt-2 px-4  border-bottom">
+            <h2>To-Do</h2>
+        </div>
+        <div class="pl-4 mx-4 text-right">
+            <ul class="list-inline">
+                {% if user.is_authenticated %}
+                   <li class="list-inline-item"><a href="#">Hello {{user.first_name}}</a></li>
+                   <li class="list-inline-item"><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                   <li class="list-inline-item"><a href="{% url 'signup' %}">SignUp</a></li>
+               {% endif %}
+            </ul>
+        </div>
+        <div class="row mx-4 p-4">
+            <ul class="list-inline">
+                {% if user.is_authenticated %}
+                   <li class="list-inline-item mx-4"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                   <li class="list-inline-item mx-4"><a href="{% url 'task-list' %}">All To-Do</a></li>
+                {% else %}
+                   <li class="list-inline-item"><a href="#"></a></li>
+                {% endif %}
+            </ul>
+        </div>
+        
+        
+    </div>
+    <div class="container_fluid px-3 mx-4">
+        {% block content %}{% endblock %} 
+    </div>
+</body>
+</html>

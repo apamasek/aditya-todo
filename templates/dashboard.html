@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}
+    To-Do Dashboard
+{% endblock title %}
+    
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col mx-4">
+                <h2 class="py-4">Hello</h2>
+                <p>Anda memiliki 3 To-Do untuk Hari Ini:</p>
+       
+            
+                    <ul class="list-unstyled">
+                    
+
+                        <li><a href="#">{{task.title}}</a></li>
+                
+                    </ul>   
+               
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}
+    
